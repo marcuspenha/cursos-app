@@ -15,7 +15,7 @@ const navLinkStyle: React.CSSProperties = {
 export default function Header() {
   const { usuario, logout } = useAuth();
 
-  const isLoggedIn = Boolean(usuario);
+  const estaLogado = Boolean(usuario);
 
   return (
     <header style={headerStyle}>
@@ -37,7 +37,7 @@ export default function Header() {
       </nav>
 
       <div style={{ marginTop: 8 }}>
-        {isLoggedIn ? (
+        {estaLogado ? (
           <>
             <span>Olá, {usuario}</span>
             <button
