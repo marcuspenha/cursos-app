@@ -5,7 +5,7 @@ import CursoDetalhe from "./pages/CursoDetalhe";
 import Sobre from "./pages/Sobre";
 import Contato from "./pages/Contato";
 import Header from "./components/Header";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
