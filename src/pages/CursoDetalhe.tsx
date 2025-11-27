@@ -6,7 +6,6 @@ import ErrorMessage from "../components/ErrorMessage";
 import CourseDetailContent from "../components/CourseDetailContent";
 import type { Course, DummyProduct } from "../types/course";
 
-
 export default function CursoDetalhe() {
   const { id } = useParams();
   const [curso, setCurso] = useState<Course | null>(null);
@@ -15,29 +14,40 @@ export default function CursoDetalhe() {
 
   useEffect(() => {
     async function carregarCurso() {
+      if (!id) {
+        setErro("Curso não encontrado.");
+        setCarregando(false);
+        return;
+      }
+
       try {
         setCarregando(true);
         setErro(null);
 
         const produtos = await getCursos();
-        const cursosAdaptados: Course[] = produtos.map((produto: DummyProduct) => ({
-  id: produto.id,
-  titulo: produto.title,
-  descricao: produto.description,
-  cargaHoraria: produto.stock ?? 40,
-  nivel: produto.rating > 4 ? "Avançado" : "Básico",
-  categoria: produto.category,
-}));
 
+        const cursosAdaptados: Course[] = produtos.map(
+          (produto: DummyProduct): Course => ({
+            id: produto.id,
+            titulo: produto.title,
+            descricao: produto.description,
+            cargaHoraria: produto.stock ?? 40,
+            nivel: produto.rating > 4 ? "Avançado" : "Básico",
+            categoria: produto.category,
+          })
+        );
 
-        const encontrado = cursosAdaptados.find((c) => c.id === Number(id));
+        const encontrado = cursosAdaptados.find(
+          (cursoAdaptado) => cursoAdaptado.id === Number(id)
+        );
 
         if (!encontrado) {
           setErro("Curso não encontrado.");
+          setCurso(null);
         } else {
           setCurso(encontrado);
         }
-      } catch (e) {
+      } catch {
         setErro("Erro ao buscar curso.");
       } finally {
         setCarregando(false);
@@ -47,9 +57,17 @@ export default function CursoDetalhe() {
     carregarCurso();
   }, [id]);
 
-  if (carregando) return <Loading />;
-  if (erro) return <ErrorMessage message={erro} />;
-  if (!curso) return null;
+  if (carregando) {
+    return <Loading />;
+  }
+
+  if (erro) {
+    return <ErrorMessage message={erro} />;
+  }
+
+  if (!curso) {
+    return null;
+  }
 
   return (
     <section>
