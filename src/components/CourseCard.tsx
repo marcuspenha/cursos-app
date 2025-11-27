@@ -6,15 +6,32 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ course }: CourseCardProps) {
+  const { id, titulo, descricao, cargaHoraria, nivel, categoria } = course;
+
   return (
-    <div style={{ border: "1px solid #ccc", padding: 16, borderRadius: 8, marginBottom: 12 }}>
+    <div
+      style={{
+        border: "1px solid #ccc",
+        padding: 16,
+        borderRadius: 8,
+        marginBottom: 12,
+      }}
+    >
       <h3>
-        <Link to={`/cursos/${course.id}`}>{course.titulo}</Link>
+        <Link to={`/cursos/${id}`}>{titulo}</Link>
       </h3>
-      <p>{course.descricao}</p>
-      <p><strong>Carga horária:</strong> {course.cargaHoraria}h</p>
-      <p><strong>Nível:</strong> {course.nivel}</p>
-      <p><strong>Categoria:</strong> {course.categoria}</p>
+
+      <p>{descricao}</p>
+
+      <p>
+        <strong>Carga horária:</strong> {cargaHoraria}h
+      </p>
+      <p>
+        <strong>Nível:</strong> {nivel}
+      </p>
+      <p>
+        <strong>Categoria:</strong> {categoria}
+      </p>
     </div>
   );
 }
