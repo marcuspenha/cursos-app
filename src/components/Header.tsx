@@ -1,23 +1,51 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+const headerStyle: React.CSSProperties = {
+  padding: "16px",
+  backgroundColor: "#282c34",
+  color: "#fff",
+};
+
+const navLinkStyle: React.CSSProperties = {
+  marginRight: 16,
+  color: "#61dafb",
+};
+
 export default function Header() {
   const { usuario, logout } = useAuth();
 
+  const isLoggedIn = Boolean(usuario);
+
   return (
-    <header style={{ padding: "16px", backgroundColor: "#282c34", color: "#fff" }}>
+    <header style={headerStyle}>
       <h1>Catálogo de Cursos</h1>
+
       <nav style={{ marginTop: "8px" }}>
-        <Link to="/" style={{ marginRight: 16, color: "#61dafb" }}>Home</Link>
-        <Link to="/cursos" style={{ marginRight: 16, color: "#61dafb" }}>Cursos</Link>
-        <Link to="/sobre" style={{ marginRight: 16, color: "#61dafb" }}>Sobre</Link>
-        <Link to="/contato" style={{ color: "#61dafb" }}>Contato</Link>
+        <Link to="/" style={navLinkStyle}>
+          Home
+        </Link>
+        <Link to="/cursos" style={navLinkStyle}>
+          Cursos
+        </Link>
+        <Link to="/sobre" style={navLinkStyle}>
+          Sobre
+        </Link>
+        <Link to="/contato" style={{ color: "#61dafb" }}>
+          Contato
+        </Link>
       </nav>
+
       <div style={{ marginTop: 8 }}>
-        {usuario ? (
+        {isLoggedIn ? (
           <>
             <span>Olá, {usuario}</span>
-            <button onClick={logout} style={{ marginLeft: 8 }}>Sair</button>
+            <button
+              onClick={logout}
+              style={{ marginLeft: 8 }}
+            >
+              Sair
+            </button>
           </>
         ) : (
           <span>Usuário não logado</span>
