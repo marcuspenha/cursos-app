@@ -11,6 +11,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
+
       <main style={{ padding: "16px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,9 +19,13 @@ export default function App() {
           <Route path="/cursos/:id" element={<CursoDetalhe />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/contato" element={<Contato />} />
-          <Route path="*" element={<h1>404 - Página não encontrada</h1>} />
+          <Route
+            path="*"
+            element={<h1>404 - Página não encontrada</h1>}
+          />
         </Routes>
       </main>
+
       <Footer />
     </BrowserRouter>
   );
