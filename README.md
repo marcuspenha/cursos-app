@@ -1,73 +1,114 @@
-# React + TypeScript + Vite
+# Cursos App – React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web de listagem e detalhamento de cursos, desenvolvida em React com TypeScript e Vite, utilizando React Router para navegação entre páginas e integração com API simulada via Axios.[^1][^2]
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Página Home com apresentação do projeto e chamada para ação.
+- Listagem de cursos com filtro (FilterBar) e cartões individuais (CourseCard), consumindo dados tipados a partir de `course.ts`.[^3]
+- Página de detalhes do curso com informações completas e componente reutilizável de conteúdo (`CourseDetailContent`).
+- Páginas institucionais de Sobre e Contato, incluindo formulário de contato básico.
+- Tratamento de erros e mensagens amigáveis ao usuário (`ErrorMessage`).
+- Layout responsivo com `Header` e `Footer` presentes em todas as páginas.[^1]
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias utilizadas
 
-## Expanding the ESLint configuration
+- React 19 com TypeScript.[^4]
+- Vite 7 para bundling e ambiente de desenvolvimento rápido.[^5][^4]
+- React Router DOM 7 para gerenciamento de rotas (Home, Cursos, CursoDetalhe, Sobre, Contato).[^1]
+- Axios para consumo da API de cursos (`api.ts`).[^2]
+- ESLint e TypeScript-ESLint para padronização e análise estática do código.[^4]
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Estrutura de pastas (principal)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```txt
+src/
+  App.tsx                # Define rotas e layout principal (Header, Footer, main)
+  main.tsx               # Ponto de entrada da aplicação React
+  api.ts                 # Acesso à API de cursos
+  course.ts              # Tipagens/interfaces de cursos
+  AuthContext.tsx        # Contexto de autenticação
+  components/
+    Header.tsx
+    Footer.tsx
+    CourseCard.tsx
+    CourseList.tsx
+    FilterBar.tsx
+    ErrorMessage.tsx
+    CourseDetailContent.tsx
+  pages/
+    Home.tsx
+    Cursos.tsx
+    CursoDetalhe.tsx
+    Sobre.tsx
+    Contato.tsx
+  App.css
+  index.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Como executar o projeto
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clonar o repositório:
+
+```bash
+git clone https://github.com/marcuspenha/cursos-app.git
+cd cursos-app
 ```
+
+2. Instalar as dependências:
+
+```bash
+npm install
+```
+
+3. Rodar em ambiente de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+4. Gerar build de produção:
+
+```bash
+npm run build
+```
+
+5. (Opcional) Rodar o lint:
+
+```bash
+npm run lint
+```
+
+
+## Rotas da aplicação
+
+- `/` – Home.
+- `/cursos` – Listagem de cursos com filtros.
+- `/cursos/:id` – Detalhe de um curso específico.
+- `/sobre` – Informações sobre o projeto.
+- `/contato` – Formulário de contato.
+[^1]
+
+
+## Próximos passos / melhorias
+
+- Conectar a uma API real de cursos (REST ou GraphQL) em vez de dados simulados.[^2]
+- Utilizar o `AuthContext` para autenticação e áreas restritas.
+- Adicionar testes unitários e de integração.
+- Melhorar acessibilidade (ARIA, navegação por teclado) e internacionalização (i18n).
+
+<div align="center">⁂</div>
+
+[^1]: App.tsx
+
+[^2]: README.md
+
+[^3]: vite.jpg
+
+[^4]: package.json
+
+[^5]: react.jpg
+
