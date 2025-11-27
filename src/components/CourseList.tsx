@@ -6,14 +6,19 @@ interface CourseListProps {
 }
 
 export default function CourseList({ courses }: CourseListProps) {
-  if (courses.length === 0) {
+  const hasCourses = courses.length > 0;
+
+  if (!hasCourses) {
     return <p>Nenhum curso encontrado.</p>;
   }
 
   return (
     <div>
       {courses.map((course) => (
-        <CourseCard key={course.id} course={course} />
+        <CourseCard
+          key={course.id}
+          course={course}
+        />
       ))}
     </div>
   );

@@ -3,5 +3,9 @@ interface ErrorMessageProps {
 }
 
 export default function ErrorMessage({ message }: ErrorMessageProps) {
-  return <p style={{ color: "red" }}>{message}</p>;
+  return (
+    <p style={{ color: "red" }}>
+      {message}
+    </p>
+  );
 }

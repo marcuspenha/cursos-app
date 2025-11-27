@@ -4,14 +4,25 @@ interface CourseDetailContentProps {
   course: Course;
 }
 
-export default function CourseDetailContent({ course }: CourseDetailContentProps) {
+export default function CourseDetailContent({
+  course,
+}: CourseDetailContentProps) {
+  const { titulo, descricao, cargaHoraria, nivel, categoria } = course;
+
   return (
     <div>
-      <h2>{course.titulo}</h2>
-      <p>{course.descricao}</p>
-      <p><strong>Carga horária:</strong> {course.cargaHoraria}h</p>
-      <p><strong>Nível:</strong> {course.nivel}</p>
-      <p><strong>Categoria:</strong> {course.categoria}</p>
+      <h2>{titulo}</h2>
+      <p>{descricao}</p>
+
+      <p>
+        <strong>Carga horária:</strong> {cargaHoraria}h
+      </p>
+      <p>
+        <strong>Nível:</strong> {nivel}
+      </p>
+      <p>
+        <strong>Categoria:</strong> {categoria}
+      </p>
     </div>
   );
 }
