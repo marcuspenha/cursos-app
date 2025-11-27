@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import type { FormEvent } from "react";
+import type { FormEvent, ChangeEvent } from "react";
 import { useAuth } from "../context/AuthContext";
 
 export default function Contato() {
@@ -11,20 +11,31 @@ export default function Contato() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
     if (!nome || !mensagem) return;
+
     setEnviado(true);
-    login(nome); // “loga” o usuário no contexto
+    login(nome);
+  }
+
+  function handleNomeChange(event: ChangeEvent<HTMLInputElement>) {
+    setNome(event.target.value);
+  }
+
+  function handleMensagemChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setMensagem(event.target.value);
   }
 
   useEffect(() => {
-  if (nomeInputRef.current) {
-    nomeInputRef.current.focus();
-  }
-}, []);
+    if (nomeInputRef.current) {
+      nomeInputRef.current.focus();
+    }
+  }, []);
 
   return (
     <section>
       <h2>Contato</h2>
+
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 8 }}>
           <label>
@@ -33,20 +44,24 @@ export default function Contato() {
               ref={nomeInputRef}
               type="text"
               value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              onChange={handleNomeChange}
             />
           </label>
         </div>
+
         <div style={{ marginBottom: 8 }}>
           <label>
             Mensagem:
             <textarea
               value={mensagem}
-              onChange={(e) => setMensagem(e.target.value)}
+              onChange={handleMensagemChange}
             />
           </label>
         </div>
-        <button type="submit">Enviar</button>
+
+        <button type="submit">
+          Enviar
+        </button>
       </form>
 
       {enviado && (
