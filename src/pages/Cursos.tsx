@@ -20,14 +20,16 @@ export default function Cursos() {
 
         const produtos = await getCursos();
 
-        const cursosAdaptados: Course[] = produtos.map((produto: DummyProduct) => ({
-          id: produto.id,
-          titulo: produto.title,
-          descricao: produto.description,
-          cargaHoraria: produto.stock ?? 40,
-          nivel: produto.rating > 4 ? "Avançado" : "Básico",
-          categoria: produto.category,
-        }));
+        const cursosAdaptados: Course[] = produtos.map(
+          (produto: DummyProduct): Course => ({
+            id: produto.id,
+            titulo: produto.title,
+            descricao: produto.description,
+            cargaHoraria: produto.stock ?? 40,
+            nivel: produto.rating > 4 ? "Avançado" : "Básico",
+            categoria: produto.category,
+          })
+        );
 
         setCursos(cursosAdaptados);
       } catch {
@@ -44,13 +46,20 @@ export default function Cursos() {
     curso.titulo.toLowerCase().includes(filtro.toLowerCase())
   );
 
+  const deveMostrarLista = !carregando && !erro;
+
   return (
     <section>
       <h2>Lista de Cursos</h2>
-      <FilterBar filtro={filtro} onChangeFiltro={setFiltro} />
+
+      <FilterBar
+        filtro={filtro}
+        onChangeFiltro={setFiltro}
+      />
+
       {carregando && <Loading />}
       {erro && <ErrorMessage message={erro} />}
-      {!carregando && !erro && <CourseList courses={cursosFiltrados} />}
+      {deveMostrarLista && <CourseList courses={cursosFiltrados} />}
     </section>
   );
 }
