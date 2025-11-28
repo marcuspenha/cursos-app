@@ -1,5 +1,5 @@
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const anoAtual = new Date().getFullYear();
 
   return (
     <footer
@@ -11,7 +11,7 @@ export default function Footer() {
       }}
     >
       <small>
-        © {currentYear} Catálogo de Cursos - Projeto Front-end Frameworks
+        © {anoAtual} Catálogo de Cursos - Projeto Front-end Frameworks
       </small>
     </footer>
   );
