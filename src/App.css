@@ -1,0 +1,194 @@
+/* Container principal da aplicação */
+.app-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Ajuste simples para telas menores */
+@media (max-width: 640px) {
+  .app-container {
+    padding: 12px;
+  }
+
+  main section {
+    padding: 12px 14px;
+  }
+}
+
+/* Conteúdo principal das páginas */
+main section {
+  background-color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  margin-top: 20px;
+}
+
+main section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  color: #111827;
+}
+
+/* Texto padrão dentro das seções */
+main section p {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Lista de cursos */
+.cursos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Card de curso */
+.course-card {
+  border: 1px solid #e5e7eb;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s;
+}
+
+.course-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.course-card h3 a {
+  color: #1d4ed8;
+}
+
+.course-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.course-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.course-card p strong {
+  color: #111827;
+}
+
+.course-card:hover {
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+  border-color: #d1d5db;
+}
+
+/* Barra de filtro */
+.filter-bar {
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-bar label {
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.filter-bar input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  min-width: 220px;
+}
+
+.filter-bar input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Formulário de contato */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  gap: 6px;
+  color: #111827;
+}
+
+input[type="text"],
+textarea {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 38px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Botões */
+button[type="submit"],
+button {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s ease, transform 0.1s ease,
+    box-shadow 0.15s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Mensagens */
+.loading-text {
+  font-style: italic;
+  color: #4b5563;
+}
+
+.error-text {
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+/* Footer */
+footer small {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
