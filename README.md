@@ -93,13 +93,6 @@ npm run lint
 [^1]
 
 
-## Próximos passos / melhorias
-
-- Conectar a uma API real de cursos (REST ou GraphQL) em vez de dados simulados.[^2]
-- Utilizar o `AuthContext` para autenticação e áreas restritas.
-- Adicionar testes unitários e de integração.
-- Melhorar acessibilidade (ARIA, navegação por teclado) e internacionalização (i18n).
-
 <div align="center">⁂</div>
 
 [^1]: App.tsx
